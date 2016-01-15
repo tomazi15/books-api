@@ -1,0 +1,5 @@
+books_api_book:
+    resource: "@BooksApiBookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

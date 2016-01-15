@@ -1,0 +1,3 @@
+books_api_book_homepage:
+    path:     /
+    defaults: { _controller: booksapi.controller.index:testAction }

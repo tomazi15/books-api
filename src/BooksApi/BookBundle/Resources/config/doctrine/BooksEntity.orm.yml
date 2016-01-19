@@ -1,0 +1,19 @@
+# src/BooksApi/BookBundle/Resources/config/doctrine/Books.orm.yml
+BooksApi\BookBundle\Entity\BooksEntity:
+
+  type: entity
+  table: books
+  id:
+    id:
+        type: integer
+        generator: { strategy: AUTO }
+
+  fields:
+    title:
+        type: string
+        length: 200
+    price:
+        type: decimal
+        scale: 2
+    description:
+        type: text

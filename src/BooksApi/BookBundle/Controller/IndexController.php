@@ -2,32 +2,32 @@
 
 namespace BooksApi\BookBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use BooksApi\BookBundle\Repositories\TestRepository;
+use BooksApi\BookBundle\Factory\CreateBookFactory;
 use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpFoundation\Request;
 
-class IndexController extends Controller
+class IndexController
 {
     /**
-     * @var TestRepository
+     * @var CreateBookFactory
      */
-    public $repo;
+    public $build;
 
     /**
-     * @param TestRepository $testRepository
+     * @param CreateBookFactory $createBookFactory
      */
     public function __construct(
-        TestRepository $testRepository
+        CreateBookFactory $createBookFactory
     ){
-        $this->repo = $testRepository;
+        $this->build = $createBookFactory;
     }
 
-
-    public function testAction()
+    /**
+     * @return JsonResponse
+     */
+    public function createAction()
     {
-
-        return new Response('Hey '. $this->repo->test());
-
-//        return $this->render('BooksApiBookBundle:Default:index.html.twig');
+        $this->build->build();
+        return new Response('Hey am Here');
     }
 }

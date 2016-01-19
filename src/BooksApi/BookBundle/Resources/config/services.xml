@@ -3,15 +3,23 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <!--Doctrine Connection-->
-        <service id="booksapi.repositories.test_repository"
-                 class="BooksApi\BookBundle\Repositories\TestRepository">
+
+        <!-- Repository Services -->
+        <service id="booksapi.repositories.create_book_repository"
+                 class="BooksApi\BookBundle\Repositories\CreateBookRepository">
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
-        <!--Doctrine Connection-->
+        <!-- Factory Services -->
+        <service id="booksapi.factory.create_book_factory"
+                 class="BooksApi\BookBundle\Factory\CreateBookFactory">
+            <argument type="service" id="booksapi.repositories.create_book_repository" />
+        </service>
+
+        <!-- Index Controller -->
         <service id="booksapi.controller.index"
                  class="BooksApi\BookBundle\Controller\IndexController">
-            <argument type="service" id="booksapi.repositories.test_repository" />
+            <argument type="service" id="booksapi.factory.create_book_factory" />
         </service>
     </services>
 </container>

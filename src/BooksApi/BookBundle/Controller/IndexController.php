@@ -3,8 +3,8 @@
 namespace BooksApi\BookBundle\Controller;
 
 use BooksApi\BookBundle\Factory\CreateBookFactory;
-use Symfony\Component\HttpFoundation\Response;
-//use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class IndexController
 {
@@ -23,11 +23,11 @@ class IndexController
     }
 
     /**
+     * @param Request $request
      * @return JsonResponse
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
-        $this->build->build();
-        return new Response('Hey am Here');
+        return new JsonResponse($this->build->build($request));
     }
 }

@@ -1,3 +1,3 @@
 books_api_book_homepage:
-    path:     /create
+    path:     /create/{title}/{price}/{description}
     defaults: { _controller: booksapi.controller.index:createAction }

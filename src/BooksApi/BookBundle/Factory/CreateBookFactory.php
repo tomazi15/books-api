@@ -18,8 +18,6 @@ class CreateBookFactory
      */
     public $createBook;
 
-    public $response;
-
     /**
      * @param CreateBookRepository $createBookRepository
      */
@@ -32,6 +30,7 @@ class CreateBookFactory
     /**
      * @param Request $request
      * @return Response
+     * @throws \Doctrine\ORM\Query\QueryException
      */
     public function build(Request $request)
     {

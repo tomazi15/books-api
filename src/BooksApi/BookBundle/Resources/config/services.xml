@@ -10,16 +10,27 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
+        <service id="booksapi.repositories.fetch_book_repository"
+                 class="BooksApi\BookBundle\Repositories\FetchBookRepository">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
         <!-- Factory Services -->
         <service id="booksapi.factory.create_book_factory"
                  class="BooksApi\BookBundle\Factory\CreateBookFactory">
             <argument type="service" id="booksapi.repositories.create_book_repository" />
         </service>
 
+        <service id="booksapi.factory.fetch_book_factory"
+                 class="BooksApi\BookBundle\Factory\FetchBookFactory">
+            <argument type="service" id="booksapi.repositories.fetch_book_repository" />
+        </service>
+
         <!-- Index Controller -->
         <service id="booksapi.controller.index"
                  class="BooksApi\BookBundle\Controller\IndexController">
             <argument type="service" id="booksapi.factory.create_book_factory" />
+            <argument type="service" id="booksapi.factory.fetch_book_factory" />
         </service>
     </services>
 </container>

@@ -2,15 +2,10 @@
 
 namespace BooksApi\BookBundle\Repositories;
 
-use BooksApi\BookBundle\Entity\BooksEntity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\QueryException;
 
-/**
- * Class CreateBookRepository
- * @package BooksApi\BookBundle\Repositories
- */
-class CreateBookRepository
+class FetchBookRepository
 {
     /**
      * @var EntityManager
@@ -27,26 +22,20 @@ class CreateBookRepository
     }
 
     /**
-     * @param $title
-     * @param $price
-     * @param $description
+     * @param $id
+     * @return null|object
      * @throws QueryException
      */
-    public function createBook($title, $price, $description)
+    public function fetchBook($id)
     {
-        $book = new BooksEntity();
-        $book->setTitle($title);
-        $book->setPrice($price);
-        $book->setDescription($description);
-
         try {
-            $this->em->persist($book);
-            $this->em->flush();
-
-            return true;
+            $book = $this->em->getRepository('BooksApiBookBundle:BooksEntity')
+                ->find($id);
         } catch (\Exception $ex) {
             $this->em->close();
             throw new QueryException('003', 502);
         }
+
+        return $book;
     }
 }

@@ -4,15 +4,25 @@ namespace BooksApi\BookBundle\Entity;
 
 class BooksEntity
 {
-    protected $title;
-    protected $price;
-    protected $description;
+    /**
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $title;
 
     /**
      * @var integer
      */
-    private $id;
+    public $price;
 
+    /**
+     * @var string
+     */
+    public $description;
 
     /**
      * Get id

@@ -6,17 +6,12 @@ use BooksApi\BookBundle\Repositories\CreateBookRepository;
 use Symfony\Component\HttpFoundation\Request;
 use BooksApi\BookBundle\Response\Response;
 
-class CreateBookFactory
+class CreateBookFactory implements FactoryInterface
 {
     /**
      * @var CreateBookRepository
      */
     public $repo;
-
-    /**
-     * @var bool
-     */
-    public $createBook;
 
     /**
      * @param CreateBookRepository $createBookRepository
@@ -39,13 +34,14 @@ class CreateBookFactory
         $price = $request->get('price');
         $description = $request->get('description');
 
-        $this->createBook = $this->repo->createBook(
+        $createBook = $this->repo->createBook(
             $title,
             $price,
             $description
         );
 
-        if($this->createBook)
+
+        if($createBook)
         {
             return new Response(
                 true,

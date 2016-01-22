@@ -5,8 +5,10 @@ namespace BooksApi\BookBundle\Factory;
 use BooksApi\BookBundle\Repositories\FetchBookRepository;
 use Symfony\Component\HttpFoundation\Request;
 use BooksApi\BookBundle\Response\FetchBookResponse;
+use BooksApi\BookBundle\Response\Response;
 
-class FetchBookFactory
+
+class FetchBookFactory implements FactoryInterface
 {
     /**
      * @var FetchBookRepository
@@ -40,8 +42,12 @@ class FetchBookFactory
                 $fetchBook->price,
                 $fetchBook->description
             );
+        } else if (empty($fetchBook)) {
+            return new Response
+            (
+              false,
+              'Could not find requested Book'
+            );
         }
     }
-
-
 }

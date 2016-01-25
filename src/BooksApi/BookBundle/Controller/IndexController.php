@@ -58,6 +58,10 @@ class IndexController
         return new JsonResponse($this->fetch->build($request));
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function updateAction(Request $request)
     {
         return new JsonResponse($this->update->build($request));

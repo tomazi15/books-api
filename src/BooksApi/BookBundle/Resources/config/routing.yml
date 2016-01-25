@@ -7,5 +7,5 @@ books_api_book_fetch:
     defaults: { _controller: booksapi.controller.index:fetchAction }
 
 books_api_book_update:
-    path:     /update
+    path:     /update/{id}/{update}
     defaults: { _controller: booksapi.controller.index:updateAction }

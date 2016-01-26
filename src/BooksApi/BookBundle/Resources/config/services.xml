@@ -9,14 +9,20 @@
                  class="BooksApi\BookBundle\Repositories\CreateBookRepository">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
-
         <service id="booksapi.repositories.fetch_book_repository"
                  class="BooksApi\BookBundle\Repositories\FetchBookRepository">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
-
         <service id="booksapi.repositories.update_book_repository"
                  class="BooksApi\BookBundle\Repositories\UpdateBookRepository">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+        <service id="booksapi.repositories.delete_book_repository"
+                 class="BooksApi\BookBundle\Repositories\DeleteBookRepository">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+        <service id="booksapi.repositories.all_book_repository"
+                 class="BooksApi\BookBundle\Repositories\FetchAllBooksRepository">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
@@ -25,15 +31,21 @@
                  class="BooksApi\BookBundle\Factory\CreateBookFactory">
             <argument type="service" id="booksapi.repositories.create_book_repository" />
         </service>
-
         <service id="booksapi.factory.fetch_book_factory"
                  class="BooksApi\BookBundle\Factory\FetchBookFactory">
             <argument type="service" id="booksapi.repositories.fetch_book_repository" />
         </service>
-
         <service id="booksapi.factory.update_book_factory"
                  class="BooksApi\BookBundle\Factory\UpdateBookFactory">
             <argument type="service" id="booksapi.repositories.update_book_repository" />
+        </service>
+        <service id="booksapi.factory.delete_book_factory"
+                 class="BooksApi\BookBundle\Factory\DeleteBookFactory">
+            <argument type="service" id="booksapi.repositories.delete_book_repository" />
+        </service>
+        <service id="booksapi.factory.all_book_factory"
+                 class="BooksApi\BookBundle\Factory\FetchAllBooksFactory">
+            <argument type="service" id="booksapi.repositories.all_book_repository" />
         </service>
 
         <!-- Index Controller -->
@@ -42,6 +54,8 @@
             <argument type="service" id="booksapi.factory.create_book_factory" />
             <argument type="service" id="booksapi.factory.fetch_book_factory" />
             <argument type="service" id="booksapi.factory.update_book_factory" />
+            <argument type="service" id="booksapi.factory.delete_book_factory" />
+            <argument type="service" id="booksapi.factory.all_book_factory" />
         </service>
 
 

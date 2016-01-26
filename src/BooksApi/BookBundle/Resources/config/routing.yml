@@ -9,3 +9,11 @@ books_api_book_fetch:
 books_api_book_update:
     path:     /update/{id}/{update}
     defaults: { _controller: booksapi.controller.index:updateAction }
+
+books_api_book_delete:
+    path:     /delete/{id}
+    defaults: { _controller: booksapi.controller.index:deleteAction }
+
+books_api_book_all:
+    path:     /all
+    defaults: { _controller: booksapi.controller.index:allAction }

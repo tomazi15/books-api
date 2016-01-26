@@ -1,12 +1,11 @@
 <?php
-
 namespace BooksApi\BookBundle\Repositories;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\QueryException;
 
-class UpdateBookRepository
-{
+class DeleteBookRepository {
+
     /**
      * @var EntityManager
      */
@@ -21,21 +20,25 @@ class UpdateBookRepository
         $this->em = $entityManager;
     }
 
-    public function updateBook($id, $update)
+    /**
+     * @param $id
+     * @return bool|null|object
+     * @throws QueryException
+     */
+    public function deleteBook($id)
     {
-
         $book = $this->em->getRepository('BooksApiBookBundle:BooksEntity')
             ->find($id);
 
-        if ($book)
-        {
+
+
+        if ($book) {
             try {
-                $book->setTitle($update);
+                $this->em->remove($book);
                 $this->em->flush();
             } catch (\Exception $em) {
                 throw new QueryException('003', 502);
             }
-
             return $book;
         } else {
             return false;

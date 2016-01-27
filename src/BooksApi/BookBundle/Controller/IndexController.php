@@ -10,6 +10,11 @@ use BooksApi\BookBundle\Factory\FetchAllBooksFactory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
+/**
+ * @Cache(expires="tomorrow", public=true)
+ */
 class IndexController
 {
     /**

@@ -31,6 +31,7 @@ class FetchBookRepository
         try {
             $book = $this->em->getRepository('BooksApiBookBundle:BooksEntity')
                 ->find($id);
+
         } catch (\Exception $ex) {
             $this->em->close();
             throw new QueryException('003', 502);

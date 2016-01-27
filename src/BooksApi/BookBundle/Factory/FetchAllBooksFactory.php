@@ -3,7 +3,7 @@ namespace BooksApi\BookBundle\Factory;
 
 use BooksApi\BookBundle\Repositories\FetchAllBooksRepository;
 use Symfony\Component\HttpFoundation\Request;
-use BooksApi\BookBundle\Response\FetchBookResponse;
+use BooksApi\BookBundle\Response\FetchAllBooksResponse;
 use BooksApi\BookBundle\Response\Response;
 
 class FetchAllBooksFactory implements FactoryInterface{
@@ -30,15 +30,13 @@ class FetchAllBooksFactory implements FactoryInterface{
     public function build(Request $request)
     {
         $allBooks = $this->repo->allBooks();
-
-        var_dump($allBooks);die();
+        $response = $this->formatBooks($allBooks);
 
         if ($allBooks)
         {
-            return new FetchBookResponse(
-                $allBooks->title,
-                $allBooks->price,
-                $allBooks->description
+            return new FetchAllBooksResponse
+            (
+                $response
             );
         } else if (empty($fetchBook)) {
             return new Response
@@ -50,4 +48,13 @@ class FetchAllBooksFactory implements FactoryInterface{
 
     }
 
+    public function formatBooks(array $books)
+    {
+        $result = array();
+        foreach ($books as $book)
+        {
+            $result[] = $book;
+        }
+        return $result;
+    }
 } 

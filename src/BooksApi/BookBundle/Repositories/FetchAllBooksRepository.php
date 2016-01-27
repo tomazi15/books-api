@@ -25,6 +25,7 @@ class FetchAllBooksRepository {
         try {
             $book = $this->em->getRepository('BooksApiBookBundle:BooksEntity')
                 ->findAll();
+
         } catch (\Exception $ex) {
             $this->em->close();
             throw new QueryException('003', 502);

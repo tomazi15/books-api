@@ -48,6 +48,12 @@
             <argument type="service" id="booksapi.repositories.all_book_repository" />
         </service>
 
+        <!-- Predis -->
+        <!--<service id="booksapi.predis.client"-->
+                 <!--class="BooksApi\BookBundle\Factory\CreateBookFactory">-->
+            <!--<argument type="service" id="booksapi.repositories.create_book_repository" />-->
+        <!--</service>-->
+
         <!-- Index Controller -->
         <service id="booksapi.controller.index"
                  class="BooksApi\BookBundle\Controller\IndexController">

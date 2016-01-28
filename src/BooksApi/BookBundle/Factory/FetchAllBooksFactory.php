@@ -2,11 +2,13 @@
 namespace BooksApi\BookBundle\Factory;
 
 use BooksApi\BookBundle\Repositories\FetchAllBooksRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BooksApi\BookBundle\Response\FetchAllBooksResponse;
 use BooksApi\BookBundle\Response\Response;
 
-class FetchAllBooksFactory implements FactoryInterface{
+class FetchAllBooksFactory extends Controller implements FactoryInterface
+{
 
     /**
      * @var FetchAllBooksRepository
@@ -29,6 +31,10 @@ class FetchAllBooksFactory implements FactoryInterface{
      */
     public function build(Request $request)
     {
+
+        $predis = $this->container->get('snc_redis.default');
+        var_dump($predis);die();
+
         $allBooks = $this->repo->allBooks();
         $response = $this->formatBooks($allBooks);
 

@@ -35,6 +35,8 @@ class FetchBookFactory implements FactoryInterface
 
         $fetchBook = $this->repo->fetchBook($id);
 
+//        var_dump($fetchBook);die();
+
         if ($fetchBook)
         {
             return new FetchBookResponse(

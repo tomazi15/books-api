@@ -31,10 +31,6 @@ class FetchAllBooksFactory extends Controller implements FactoryInterface
      */
     public function build(Request $request)
     {
-
-        $predis = $this->container->get('snc_redis.default');
-        var_dump($predis);die();
-
         $allBooks = $this->repo->allBooks();
         $response = $this->formatBooks($allBooks);
 
